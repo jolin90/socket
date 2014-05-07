@@ -1,0 +1,1 @@
+char *allstrim(char *str);
