@@ -3,22 +3,14 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
-#include <string.h>
-#include <unistd.h>
 #include <net/if.h>
+#include <string.h>
 #include <linux/if_packet.h>
 #include <netinet/if_ether.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <netdb.h>
-#include <pthread.h>
-#include <poll.h>
-#include <errno.h>
-#include <stdarg.h>
-#include <netinet/ip_icmp.h>
-#include <signal.h>
 
-#ifndef pr_fmt
+#ifndef  pr_fmt
 #define pr_fmt(fmt) fmt "\n"
 #endif
 
@@ -37,3 +29,5 @@
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
+
+

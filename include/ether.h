@@ -11,5 +11,3 @@ struct mac_header
 
 #pragma pack()
 
-void show_eth_header(struct ethhdr *ethhdr);
-
