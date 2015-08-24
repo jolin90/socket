@@ -3,16 +3,20 @@ OUT			:= out
 SRC			:= src
 
 # Cross compiler
-CROSS_COMPILE	?=
-CC			:= $(CROSS_COMPILE)gcc
-LD			:= $(CROSS_COMPILE)ld
-STRIP		:= $(CROSS_COMPILE)strip
-OBJCOPY		:= $(CROSS_COMPILE)objcopy
-OBJDUMP		:= $(CROSS_COMPILE)objdump
+
+#CROSS_COMPILE	?=
+#CC			:= $(CROSS_COMPILE)gcc
+#LD			:= $(CROSS_COMPILE)ld
+#STRIP		:= $(CROSS_COMPILE)strip
+#OBJCOPY		:= $(CROSS_COMPILE)objcopy
+#OBJDUMP		:= $(CROSS_COMPILE)objdump
+
+# $(info $(CC))
+# $(info $(LD))
 
 # Tools
 RM			:= rm -f
-RMDIR		:= rm -rf 
+RMDIR		:= rm -rf
 MKDIR		:= mkdir -p
 MV			:= mv -f
 SED			:= sed
@@ -55,7 +59,7 @@ $(APPS): $(LIBO)
 
 $(LIBO): $(OBJS)
 	$(Q) echo "$@ <= $^"
-	$(Q) ld -o $@ -r $^ 
+	$(Q) $(LD) -o $@ -r $^
 
 -include $(OBJS:.o=.o.d))
 
