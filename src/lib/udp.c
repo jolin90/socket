@@ -9,4 +9,3 @@ void show_udp_header(struct udp_header *hdr)
 	pr_std_info("udp_length = %d", ntohs(hdr->udp_length));
 	pr_std_info("udp_checksum = 0x%04x", hdr->udp_checksum);
 }
-

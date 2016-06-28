@@ -19,4 +19,3 @@ void show_tcp_header(struct tcp_header *hdr)
 	pr_std_info("checksum = 0x%04x", ntohs(hdr->checksum));
 	pr_std_info("urgent_pointer = %d", ntohs(hdr->urgent_pointer));
 }
-

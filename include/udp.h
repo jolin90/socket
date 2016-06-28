@@ -1,6 +1,5 @@
 #pragma pack(1)
-struct udp_header
-{
+struct udp_header {
 	u16 src_port;
 	u16 dest_port;
 
@@ -11,3 +10,4 @@ struct udp_header
 };
 #pragma pack()
 
+void show_udp_header(struct udp_header *hdr);

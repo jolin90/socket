@@ -32,6 +32,7 @@ CSRCS	:=
 ASRCS	:=
 
 OBJS	= $(patsubst %.c, $(OUT)/%.o, $(CSRCS))
+OBJSD	= $(patsubst %.o, %.o.d, $(OBJS))
 APPS	= $(patsubst $(SRC)/%.c, $(OUT)/%, $(ASRCS))
 LIBO	= $(OUT)/jolin.o
 
@@ -39,7 +40,7 @@ include $(SRC)/config.mk
 
 $(OUT)/%.o: %.c
 	$(Q) $(MKDIR) $(shell dirname $@)
-	$(Q) echo "$< => $@"
+	$(Q) echo "[CC] $< => $@"
 	$(Q) $(COMPILE.c) -o $@ $<
 	$(Q) $(CC) $(CPPFLAGS) -o $@.d -MM $<
 	$(Q) $(MV) $@.d $@.d.tmp
@@ -50,7 +51,7 @@ $(OUT)/%.o: %.c
 
 $(OUT)/%: $(SRC)/%.c
 	$(Q) $(MKDIR) $(shell dirname $@)
-	$(Q) echo "$@ <= $^"
+	$(Q) echo "[LD] $@ <= $^"
 	$(Q) $(CC) -o $@ $< $(LIBO) $(CPPFLAGS) $(CFLAGS)
 
 all: $(APPS)
@@ -58,14 +59,19 @@ all: $(APPS)
 $(APPS): $(LIBO)
 
 $(LIBO): $(OBJS)
-	$(Q) echo "$@ <= $^"
+	$(Q) echo "[LD] $@ <= $^"
 	$(Q) $(LD) -o $@ -r $^
 
 -include $(OBJS:.o=.o.d))
 
+#$(info $(APPS))
+#$(info $(LIBO))
+#$(info $(OBJS))
+#$(info $(OBJSD))
+
 .PHONY: clean
 clean:
-	$(Q) $(RM) $(OBJS) $(DEPS) $(APPS) $(LIBO)
+	$(Q) $(RM) $(OBJS) $(OBJSD) $(LIBO)
 
 .PHONY: distclean
 distclean:

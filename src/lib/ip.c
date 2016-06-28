@@ -3,8 +3,7 @@
 
 const char *ip_protocol_type_tostring(int type)
 {
-	switch (type)
-	{
+	switch (type) {
 	case IPPROTO_IP:
 		return "IPPROTO_IP";
 	case IPPROTO_ICMP:
@@ -58,8 +57,7 @@ void show_ip_header(struct ip_header *hdr, int simple)
 {
 	pr_green_info("IP Header:");
 
-	if (simple == 0)
-	{
+	if (simple == 0) {
 		pr_std_info("version = %d", hdr->version);
 		pr_std_info("header_length = %d", hdr->header_length);
 		pr_std_info("service_type = %d", hdr->service_type);
@@ -70,12 +68,9 @@ void show_ip_header(struct ip_header *hdr, int simple)
 		pr_std_info("header_checksum = 0x%04x", ntohs(hdr->header_checksum));
 	}
 
-	pr_std_info("protocol type = %s", (char *)ip_protocol_type_tostring(hdr->protocol_type));
+	pr_std_info("protocol type = %s",
+				(char *)ip_protocol_type_tostring(hdr->protocol_type));
 	pr_std_info("src ip = %s", inet_ntoa(*(struct in_addr *)&hdr->src_ip));
 	pr_std_info("dest ip = %s", inet_ntoa(*(struct in_addr *)&hdr->dest_ip));
 
 }
-
-
-
-

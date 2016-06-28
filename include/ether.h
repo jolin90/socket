@@ -1,7 +1,6 @@
 #pragma pack(1)
 
-struct mac_header
-{
+struct mac_header {
 	u8 dest_mac[6];
 	u8 src_mac[6];
 	u16 protocol_type;
@@ -11,3 +10,4 @@ struct mac_header
 
 #pragma pack()
 
+void show_eth_header(struct ethhdr *ethhdr);
